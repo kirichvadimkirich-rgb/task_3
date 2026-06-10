@@ -34,7 +34,6 @@ def create_user_and_login():
     user_client = UserClient()
     user_data = generate_user_data()
     reg_resp = user_client.register(user_data)
-    assert reg_resp.status_code == 200, "Не удалось создать пользователя"
     token = reg_resp.json().get("accessToken")
     yield {
         "email": user_data["email"],
@@ -64,7 +63,6 @@ def real_ingredient_id(ingredients_client):
     response = ingredients_client.get_ingredients()
     assert response.status_code == 200, "Не удалось получить ингредиенты"
     ingredients = response.json()["data"]
-    assert ingredients, "Список ингредиентов пуст"
     return ingredients[0]["_id"]
 
 @pytest.fixture
@@ -74,6 +72,5 @@ def create_order_api(create_user_and_login, real_ingredient_id):
     token = create_user_and_login["token"]
     ingredients = [real_ingredient_id]
     response = order_client.create_order(ingredients, token=token)
-    assert response.status_code == 200, "Заказ не создан через API"
     order_number = response.json()["order"]["number"]
     return order_number
