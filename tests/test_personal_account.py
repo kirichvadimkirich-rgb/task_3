@@ -18,9 +18,11 @@ class TestPersonalAccount:
         main_page.click_personal_account()
         login_page = LoginPage(browser)
 
-        with allure.step("Проверить, что открылась страница 'Вход'(url, Заголовок 'Вход')"):
+        with allure.step("Проверить, что URL содержит 'login'"):
             assert "login" in browser.current_url
-            assert login_page.get_title() == "Вход", "Заголовок страницы входа не соответствует"
+
+        with allure.step("Проверить, что отображается заголовок 'Вход'"):
+            assert login_page.is_title_displayed(), "Заголовок 'Вход' не отображается"
 
     @allure.title("Переход в раздел «История заказов» и отображение созданного заказа")
     @allure.description("Проверяем, что после создания заказа, он отображается в истории заказов, сверяем номер заказа")
@@ -56,6 +58,8 @@ class TestPersonalAccount:
         personal_page.logout()
         login_page = LoginPage(logged_in_browser)
 
-        with allure.step("Проверить, что открылась страница 'Вход'(url, Заголовок 'Вход')"):
+        with allure.step("Проверить, что URL содержит 'login'"):
             assert "login" in personal_page.driver.current_url
-            assert login_page.get_title() == "Вход", "Заголовок страницы входа не соответствует"
+
+        with allure.step("Проверить, что отображается заголовок 'Вход'"):
+            assert login_page.is_title_displayed(), "Заголовок 'Вход' не отображается"

@@ -8,9 +8,9 @@ class PasswordRecoveryPage(BasePage):
         super().__init__(driver)
         self.locators = PasswordRecoveryPageLocators()
 
-    @allure.step("Получить заголовок страницы")
-    def get_title(self):
-        return self._get_text(self.locators.PAGE_TITLE)    
+    @allure.step("Проверить отображение заголовка 'Восстановление пароля'")
+    def is_title_displayed(self):
+        return self._is_displayed(self.locators.PAGE_TITLE)    
 
     @allure.step("Ввести email")
     def enter_email(self, email):

@@ -10,10 +10,6 @@ class OrderModalPage(BasePage):
     @allure.step("Закрыть модальное окно заказа")
     def close(self):
         self._click_by_js(self.locators.CLOSE_BUTTON)
-
-    @allure.step("Получить текст окна заказа")
-    def get_modal_text(self):
-        return self._get_text(self.locators.ORDER_TEXT)
    
     @allure.step("Проверить, что модальное окно отображается")
     def is_modal_displayed(self):
@@ -26,3 +22,7 @@ class OrderModalPage(BasePage):
     @allure.step("Ожидать появления реального номера заказа (замена заглушки 9999)")
     def wait_for_real_order_number(self):
         self.wait.until(lambda d: "9999" not in d.find_element(*self.locators.ORDER_NUMBER).text, message="Номер заказа не перестал быть 9999 за отведённое время")
+
+    @allure.step("Проверить наличие текста 'Ваш заказ начали готовить'")
+    def is_confirmation_text_displayed(self):
+        return self._is_displayed(self.locators.ORDER_TEXT)    

@@ -3,8 +3,6 @@ from config.settings import BASE_URL, API_DOCS_URL
 from pages.main_page import MainPage
 from pages.order_feed_page import OrderFeedPage
 from api_clients.order_client import OrderClient
-from locators.main_page_locators import MainPageLocators
-import time
 from pages.order_modal_page import OrderModalPage
 from pages.personal_account_page import PersonalAccountPage
 

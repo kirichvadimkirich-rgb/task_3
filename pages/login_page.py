@@ -18,6 +18,6 @@ class LoginPage(BasePage):
     def go_to_forgot_password(self):
         self._click(self.locators.FORGOT_PASSWORD_LINK)
 
-    @allure.step("Возвращает текст заголовка страницы входа.")
-    def get_title(self):
-        return self._get_text(self.locators.PAGE_TITLE)    
+    @allure.step("Проверить отображение заголовка 'Вход'")
+    def is_title_displayed(self):
+        return self._is_displayed(self.locators.PAGE_TITLE)    

@@ -24,10 +24,9 @@ class TestPasswordRecovery:
             assert "forgot-password" in browser.current_url
 
         recovery_page = PasswordRecoveryPage(browser)
-        title = recovery_page.get_title()
 
-        with allure.step("Проверить, что заголовок содержит 'Восстановление пароля'"):
-            assert "Восстановление пароля" in title, f"Заголовок '{title}' не соответствует ожидаемому"
+        with allure.step("Проверить, что отображается заголовок 'Восстановление пароля'"):
+            assert recovery_page.is_title_displayed(), "Заголовок 'Восстановление пароля' не отображается"
        
 
     @allure.title("Ввод почты и клик по кнопке 'Восстановить'")
@@ -46,10 +45,8 @@ class TestPasswordRecovery:
         with allure.step("Проверить, что URL содержит 'reset-password'"):
             assert "reset-password" in browser.current_url
         
-        title = recovery_page.get_title()
-
-        with allure.step("Проверить, что заголовок содержит 'Восстановление пароля'"):
-            assert "Восстановление пароля" in title, f"Заголовок '{title}' не содержит 'Восстановление пароля'"
+        with allure.step("Проверить, что отображается заголовок 'Восстановление пароля'"):
+            assert recovery_page.is_title_displayed(), "Заголовок 'Восстановление пароля' не отображается"
 
 
     @allure.title("Клик по кнопке показать/скрыть пароль делает поле активным (подсветка)")

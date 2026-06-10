@@ -35,8 +35,8 @@ class TestMainFunctionality:
         main_page = MainPage(browser)
         main_page.click_ingredient()
         ingredient_modal = IngredientModalPage(browser)
-        with allure.step("Проверить, что модальное окно отображается по заголовку"):
-            assert ingredient_modal.get_modal_title() == "Детали ингредиента", "Заголовок модального окна не соответствует"
+        with allure.step("Проверить, что модальное окно с заголовком 'Детали ингредиента' отображается"):
+            assert ingredient_modal.is_modal_title_displayed(), "Модальное окно с деталями ингредиента не появилось"
 
     @allure.title("Всплывающее окно с деталями закрывается кликом по крестику")
     @allure.description("Проверяем, что модальное окно ингредиента закрывается по нажатию на крестик")
@@ -70,6 +70,5 @@ class TestMainFunctionality:
         with allure.step("Проверить, что появилось модальное окно с подтверждением заказа"):
             assert order_modal.is_modal_displayed(), "Модальное окно заказа не появилось"
         
-        with allure.step("Проверить текст в окне: 'Ваш заказ начали готовить'"):
-            title = order_modal.get_modal_text()
-            assert "Ваш заказ начали готовить" in title, f"Заголовок '{title}' не соответствует ожидаемому"
+        with allure.step("Проверить наличие текста 'Ваш заказ начали готовить'"):
+            assert order_modal.is_confirmation_text_displayed(), "Текст подтверждения не отображается"

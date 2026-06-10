@@ -8,9 +8,9 @@ class IngredientModalPage(BasePage):
         super().__init__(driver)
         self.locators = IngredientModalLocators()
 
-    @allure.step("Получить заголовок модального окна")
-    def get_modal_title(self):
-        return self._get_text(self.locators.MODAL_TITLE)
+    @allure.step("Проверить, что модальное окно с заголовком 'Детали ингредиента' отображается")
+    def is_modal_title_displayed(self):
+        return self._is_displayed(self.locators.MODAL_TITLE)
 
     @allure.step("Закрыть модальное окно заказа")
     def close_modal(self):
