@@ -63,7 +63,6 @@ class BasePage:
             element = driver.find_element(*locator)
             color = element.value_of_css_property(property_name)
         # Извлекаем числа из формата rgb(...) или rgba(...)
-            import re
             match = re.search(r'rgba?\((\d+),\s*(\d+),\s*(\d+)', color)
             if match:
                 actual_rgb = tuple(map(int, match.groups()[:3]))
