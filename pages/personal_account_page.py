@@ -19,4 +19,8 @@ class PersonalAccountPage(BasePage):
         
     @allure.step("Получить номер первого заказа из истории")
     def get_first_order_number_from_history(self):
-        return self._get_number_from_text(self.locators.FIRST_ORDER_NUMBER_IN_HISTORY)
+        number = self._get_number_from_text(self.locators.FIRST_ORDER_NUMBER_IN_HISTORY)
+        if number is None:
+            raise ValueError("Не удалось извлечь номер заказа из ленты")
+        return number
+        

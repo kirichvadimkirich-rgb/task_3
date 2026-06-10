@@ -111,6 +111,5 @@ class BasePage:
         text = element.text
         # Извлекаем цифры из текста (номер заказа)
         match = re.search(r'\d+', text)
-        assert match, f"Не удалось извлечь номер заказа из текста: {text}"
-        return match.group()
+        return match.group() if match else None
 

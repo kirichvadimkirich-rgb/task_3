@@ -41,7 +41,10 @@ class OrderFeedPage(BasePage):
 
     @allure.step("Получить номер первого заказа из ленты")
     def get_first_order_number_from_feed(self):
-        return self._get_number_from_text(self.locators.FIRST_ORDER_NUMBER)  
+        number = self._get_number_from_text(self.locators.FIRST_ORDER_NUMBER)
+        if number is None:
+            raise ValueError("Не удалось извлечь номер заказа из ленты")
+        return number 
     
     @allure.step("Ожидать появления номера заказа в блоке «В работе»")
     def wait_for_order_in_work(self, order_number):
