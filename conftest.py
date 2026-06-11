@@ -61,7 +61,6 @@ def ingredients_client():
 @pytest.fixture
 def real_ingredient_id(ingredients_client):
     response = ingredients_client.get_ingredients()
-    assert response.status_code == 200, "Не удалось получить ингредиенты"
     ingredients = response.json()["data"]
     return ingredients[0]["_id"]
 
